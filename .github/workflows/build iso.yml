@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y xorriso isolinux debootstrap
+          sudo apt install -y xorriso isolinux debootstrap genisoimage
 
       # Step 3: Download the Debian ISO
       - name: Download Debian 12 ISO
@@ -59,4 +59,4 @@ jobs:
       # Step 8: Create the new ISO
       - name: Create new ISO
         run: |
-          sudo mkisofs -o /tmp/custom-debian.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -J -R -V "Custom Debian" /tmp/debian_custom
+          sudo genisoimage -o /tmp/custom-debian.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -J -R -V "Custom Debian" /tmp/debian_custom
