@@ -24,7 +24,7 @@ jobs:
       # Step 3: Download the Debian ISO
       - name: Download Debian 12 ISO
         run: |
-          wget https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.0.0-amd64-netinst.iso -P /tmp
+          wget https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.8.0-amd64-netinst.iso -P /tmp
 
       # Step 4: Mount the ISO and extract its contents
       - name: Extract ISO contents
