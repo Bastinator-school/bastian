@@ -66,4 +66,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: custom-debian-iso
-          path: /tmp/debian_custom.iso
+          path: /tmp/custom-debian.iso
