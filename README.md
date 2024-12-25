@@ -18,14 +18,15 @@ the distribution is designed to be lightweight and effective at what it does. **
     - [1.2.1. Package search and install: CLI or bauh (GUI) (not implemented)](#121-package-search-and-install-cli-or-bauh-gui-not-implemented)
     - [1.2.2. network: NetworkManager (official debian)](#122-network-networkmanager-official-debian)
     - [1.2.3. bluetooth: Blueman (official debian)](#123-bluetooth-blueman-official-debian)
-    - [1.2.4. App launcher: Dmenu / rofi (official debian)](#124-app-launcher-dmenu--rofi-official-debian)
+    - [1.2.4. App launcher: Dmenu (official debian)](#124-app-launcher-dmenu-official-debian)
     - [1.2.5. sound driver: pulseaudio (official debian)](#125-sound-driver-pulseaudio-official-debian)
-    - [1.2.6. sound manager: Kmix (not implemented)](#126-sound-manager-kmix-not-implemented)
+    - [1.2.6. sound manager: Kmix](#126-sound-manager-kmix)
     - [1.2.7. terminal: alacritty (official debian)](#127-terminal-alacritty-official-debian)
     - [1.2.8. Power terminal: tabby (their own repo)](#128-power-terminal-tabby-their-own-repo)
-    - [1.2.9. gaming: steam (flatpak)](#129-gaming-steam-flatpak)
-    - [1.2.10. social: discord (flatpak)](#1210-social-discord-flatpak)
+    - [1.2.9. gaming: steam (flatpak) (optional default: yes)](#129-gaming-steam-flatpak-optional-default-yes)
+    - [1.2.10. social: discord (flatpak) (optional default: yes)](#1210-social-discord-flatpak-optional-default-yes)
     - [1.2.11. bitwarden client (flatpak) (optional default: yes)](#1211-bitwarden-client-flatpak-optional-default-yes)
+    - [jellyfin client (flatpak) (optional default: yes)](#jellyfin-client-flatpak-optional-default-yes)
   - [1.3. boot](#13-boot)
     - [1.3.1. grub: uefi or legacy](#131-grub-uefi-or-legacy)
 
@@ -51,21 +52,23 @@ I have chosen to use Xserver instead of wayland.
 
 ### 1.2.3. [bluetooth: Blueman](https://github.com/blueman-project/blueman) (official debian)
 
-### 1.2.4. App launcher: [Dmenu](https://github.com/i3/i3/blob/next/i3-dmenu-desktop) / [rofi](https://github.com/davatorium/rofi) (official debian)
+### 1.2.4. App launcher: [Dmenu](https://github.com/i3/i3/blob/next/i3-dmenu-desktop) (official debian)
 
 ### 1.2.5. [sound driver: pulseaudio](https://gitlab.freedesktop.org/pulseaudio/pulseaudio) (official debian)
 
-### 1.2.6. [sound manager: Kmix](https://github.com/KDE/kmix) (not implemented)
+### 1.2.6. [sound manager: Kmix](https://github.com/KDE/kmix) 
 
 ### 1.2.7. [terminal: alacritty](https://github.com/alacritty/alacritty) (official debian)
 
 ### 1.2.8. [Power terminal: tabby](https://github.com/Eugeny/tabby) (their own repo)
 
-### 1.2.9. [gaming: steam](https://flathub.org/apps/com.valvesoftware.Steam) (flatpak)
+### 1.2.9. [gaming: steam](https://flathub.org/apps/com.valvesoftware.Steam) (flatpak) (optional default: yes)
 
-### 1.2.10. [social: discord](https://flathub.org/apps/com.discordapp.Discord) (flatpak)
+### 1.2.10. [social: discord](https://flathub.org/apps/com.discordapp.Discord) (flatpak) (optional default: yes)
 
 ### 1.2.11. [bitwarden client](https://flathub.org/apps/com.bitwarden.desktop) (flatpak) (optional default: yes)
+
+### jellyfin client (flatpak) (optional default: yes)
 
 ## 1.3. boot
 
