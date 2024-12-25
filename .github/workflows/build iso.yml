@@ -50,8 +50,9 @@ jobs:
           cp -r path/to/your/custom/files/* /tmp/debian_custom/casper/
 
       # Step 7: Update md5sum.txt
+      - name: Update md5sum.txt
         run: |
-          cd /tmp
+          cd /tmp/debian_custom
           find . -type f -print0 | xargs -0 md5sum > md5sum.txt
 
       # Step 8: Create the new ISO
