@@ -46,8 +46,9 @@ jobs:
       # Step 6: Add custom files (e.g., scripts and preseed.cfg)
       - name: Add custom files
         run: |
-          mkdir -p /tmp/debian_custom/casper
-          cp -r path/to/your/custom/files/* /tmp/debian_custom/casper/
+          mkdir -p /tmp/debian_custom/scripts
+          cp ./install_scripts/main.sh /tmp/debian_custom/scripts/
+          cp ./install_scripts/preseed.cfg /tmp/debian_custom/scripts/
 
       # Step 7: Update md5sum.txt
       - name: Update md5sum.txt
