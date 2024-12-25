@@ -63,7 +63,7 @@ jobs:
       
       # Step 7: Upload the newly built ISO as an artifact
       - name: Upload ISO artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: custom-debian-iso
           path: /tmp/custom-debian.iso
