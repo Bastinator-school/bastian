@@ -26,36 +26,35 @@ jobs:
         run: |
           wget https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.8.0-amd64-netinst.iso -P /tmp
 
-      # Step 4: Mount the ISO and extract its contents
+      # Step 4: Verify the ISO checksum
+      - name: Verify ISO checksum
+        run: |
+          wget https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/SHA256SUMS -P /tmp
+          wget https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/SHA256SUMS.sign -P /tmp
+          cd /tmp
+          sha256sum -c SHA256SUMS 2>&1 | grep debian-12.8.0-amd64-netinst.iso
+
+      # Step 5: Mount the ISO and extract its contents
       - name: Extract ISO contents
         run: |
           mkdir -p /tmp/debian_iso
           sudo mount -o loop /tmp/debian-12.8.0-amd64-netinst.iso /tmp/debian_iso
           mkdir -p /tmp/debian_custom
-          sudo cp -r /tmp/debian_iso/* /tmp/debian_custom
+          sudo rsync -a /tmp/debian_iso/ /tmp/debian_custom/
           sudo umount /tmp/debian_iso
 
-      # Step 5: Add custom files (e.g., scripts and preseed.cfg)
+      # Step 6: Add custom files (e.g., scripts and preseed.cfg)
       - name: Add custom files
         run: |
-          mkdir -p /tmp/debian_custom/scripts
-          cp ./install_scripts/main.sh /tmp/debian_custom/scripts/
-          cp ./install_scripts/preseed.cfg /tmp/debian_custom/preseed.cfg
+          mkdir -p /tmp/debian_custom/casper
+          cp -r path/to/your/custom/files/* /tmp/debian_custom/casper/
 
-      # Step 6: Rebuild the ISO
-      - name: Rebuild ISO
+      # Step 7: Update md5sum.txt
         run: |
-          cd /tmp/debian_custom
-          sudo xorriso -as mkisofs -o /tmp/debian_custom.iso \
-            -isohybrid-mbr /usr/lib/ISOLINUX/isohdpfx.bin \
-            -c isolinux/boot.cat \
-            -b isolinux/isolinux.bin \
-            -no-emul-boot -boot-load-size 4 -boot-info-table \
-            -J -R -V "Custom Debian 12" .
+          cd /tmp
+          find . -type f -print0 | xargs -0 md5sum > md5sum.txt
 
-      # Step 7: Upload the newly built ISO as an artifact
-      - name: Upload ISO artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: custom-debian-iso
-          path: /tmp/debian_custom.iso
+      # Step 8: Create the new ISO
+      - name: Create new ISO
+        run: |
+          sudo mkisofs -o /tmp/custom-debian.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -J -R -V "Custom Debian" /tmp/debian_custom
