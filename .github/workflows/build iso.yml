@@ -54,7 +54,7 @@ jobs:
       - name: Update md5sum.txt
         run: |
           cd /tmp/debian_custom
-          sudo find . -type f -print0 | sudo xargs -0 md5sum > md5sum.txt
+          sudo find . -type f -print0 | sudo xargs -0 md5sum | sudo tee md5sum.txt > /dev/null
 
       # Step 8: Create the new ISO
       - name: Create new ISO
