@@ -60,3 +60,10 @@ jobs:
       - name: Create new ISO
         run: |
           sudo genisoimage -o /tmp/custom-debian.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -J -R -V "Custom Debian" /tmp/debian_custom
+      
+      # Step 7: Upload the newly built ISO as an artifact
+      - name: Upload ISO artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: custom-debian-iso
+          path: /tmp/debian_custom.iso
