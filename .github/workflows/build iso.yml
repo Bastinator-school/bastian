@@ -1,0 +1,61 @@
+name: Build Custom Debian ISO
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Step 2: Install dependencies
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y xorriso isolinux debootstrap
+
+      # Step 3: Download the Debian ISO
+      - name: Download Debian 12 ISO
+        run: |
+          wget https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.0.0-amd64-netinst.iso -P /tmp
+
+      # Step 4: Mount the ISO and extract its contents
+      - name: Extract ISO contents
+        run: |
+          mkdir -p /tmp/debian_iso
+          sudo mount -o loop /tmp/debian-12.0.0-amd64-netinst.iso /tmp/debian_iso
+          mkdir -p /tmp/debian_custom
+          sudo cp -r /tmp/debian_iso/* /tmp/debian_custom
+          sudo umount /tmp/debian_iso
+
+      # Step 5: Add custom files (e.g., scripts and preseed.cfg)
+      - name: Add custom files
+        run: |
+          mkdir -p /tmp/debian_custom/scripts
+          cp ./install_scripts/main.sh /tmp/debian_custom/scripts/
+          cp ./install_scripts/preseed.cfg /tmp/debian_custom/preseed.cfg
+
+      # Step 6: Rebuild the ISO
+      - name: Rebuild ISO
+        run: |
+          cd /tmp/debian_custom
+          sudo xorriso -as mkisofs -o /tmp/debian_custom.iso \
+            -isohybrid-mbr /usr/lib/ISOLINUX/isohdpfx.bin \
+            -c isolinux/boot.cat \
+            -b isolinux/isolinux.bin \
+            -no-emul-boot -boot-load-size 4 -boot-info-table \
+            -J -R -V "Custom Debian 12" .
+
+      # Step 7: Upload the newly built ISO as an artifact
+      - name: Upload ISO artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: custom-debian-iso
+          path: /tmp/debian_custom.iso
