@@ -46,15 +46,15 @@ jobs:
       # Step 6: Add custom files (e.g., scripts and preseed.cfg)
       - name: Add custom files
         run: |
-          mkdir -p /tmp/debian_custom/scripts
-          cp ./install_scripts/main.sh /tmp/debian_custom/scripts/
-          cp ./install_scripts/preseed.cfg /tmp/debian_custom/scripts/
+          sudo mkdir -p /tmp/debian_custom/scripts
+          sudo cp ./install_scripts/main.sh /tmp/debian_custom/scripts/
+          sudo cp ./install_scripts/preseed.cfg /tmp/debian_custom/scripts/
 
       # Step 7: Update md5sum.txt
       - name: Update md5sum.txt
         run: |
           cd /tmp/debian_custom
-          find . -type f -print0 | xargs -0 md5sum > md5sum.txt
+          sudo find . -type f -print0 | sudo xargs -0 md5sum > md5sum.txt
 
       # Step 8: Create the new ISO
       - name: Create new ISO
