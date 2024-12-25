@@ -30,7 +30,7 @@ jobs:
       - name: Extract ISO contents
         run: |
           mkdir -p /tmp/debian_iso
-          sudo mount -o loop /tmp/debian-12.0.0-amd64-netinst.iso /tmp/debian_iso
+          sudo mount -o loop /tmp/debian-12.8.0-amd64-netinst.iso /tmp/debian_iso
           mkdir -p /tmp/debian_custom
           sudo cp -r /tmp/debian_iso/* /tmp/debian_custom
           sudo umount /tmp/debian_iso
