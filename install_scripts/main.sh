@@ -21,7 +21,7 @@ echo "" | sudo tee /etc/network/interfaces
 # touch /var/log/bastianinstall
 
 # install most essential
-sudo apt -y install lightdm i3-wm xrandr arandr i3lock fonts-dejavu-core xfonts-base pulseaudio blueman alacritty network-manager
+sudo apt -y install lightdm xorg i3-wm arandr i3lock fonts-dejavu-core xfonts-base pulseaudio blueman alacritty network-manager
 
 sudo systemctl enable NetworkManager
 sudo systemctl start NetworkManager
@@ -29,7 +29,7 @@ sudo systemctl start NetworkManager
 
 # install useful packages
 
-sudo apt install -y kmix nm-applet flatpak
+sudo apt install -y kmix nm-tray flatpak
 
 
 sudo systemctl enable NetworkManager
@@ -46,7 +46,7 @@ curl -s https://packagecloud.io/install/repositories/eugeny/tabby/script.deb.sh 
 sudo apt install -y tabby-terminal
 
 # install bauh for flatpak and apt app management
-sudo apt-get install aptitude python3 python3-pip python3-yaml python3-dateutil python3-pyqt5 python3-packaging python3-requests
+sudo apt-get install -y aptitude python3 python3-pip python3-yaml python3-dateutil python3-pyqt5 python3-packaging python3-requests
 
 pip3 install bauh
 
