@@ -63,6 +63,9 @@ bindsym Mod4+t exec tabby
 #open teams
 bindsym Mod4+Shift+t exec teams-for-linux
 
+#open jellyfin client
+bindsym Mod4+j exec flatpak run com.github.iwalton3.jellyfin-media-player
+
 #open virt-manager libvirt is automaically started on boot
 bindsym Mod4+v exec virt-manager
 
